@@ -1,1 +1,1 @@
-First code setup
+Created the Game Runner and Game Loop. Rendering will be the next update;
