@@ -1,14 +1,18 @@
 package com.game.code;
 
+import com.game.code.graphics.Screen;
+
 public class GameRunner {
-	
-	GameRunner() {
-		init();
-	}
 	
 	//The init method will run the setup the game. I.E. getting a frame up and Control Input
 	public static void init() {
-		System.out.println("Initialization is running");
+		Screen screen = new Screen("Big Cheese Climb", 400, 600);
+		Control controls = new Control();
+		screen.addKeyListener(controls);
+		GameLoop loop = new GameLoop(screen, controls);
+		Thread t = new Thread(loop);
+		loop.startGame();
+		t.start();
 	}
 	
 	//Self explanatory, this runs the menu

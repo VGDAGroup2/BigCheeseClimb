@@ -1,1 +1,1 @@
-Setting up the Development Branch.
+Setup the screen and control inputs. Added comment to help explain.

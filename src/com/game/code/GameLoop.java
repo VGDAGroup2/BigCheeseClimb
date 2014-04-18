@@ -1,6 +1,8 @@
 package com.game.code;
 
-public class GameLoop implements Runnable{
+import com.game.code.graphics.Screen;
+
+public class GameLoop implements Runnable {
 	private boolean running = false;
 	private boolean readyToDraw = false;
 	private long lastTime;
@@ -10,16 +12,17 @@ public class GameLoop implements Runnable{
 	private int updates; //Number of updates per second
 	public static int frames; //Number of renders per second
 	private long now;
-	//Screen screen;
-	//Control control;
+	Screen screen;
+	Control control;
 	
-	GameLoop(/*Screen screen, Control control*/) {
-		//this.screen = screen;
-		//this.control = control;
+	GameLoop(Screen screen, Control control) {
+		this.screen = screen;
+		this.control = control;
 	}
 	
 	void startGame() {
 		running = true;
+		readyToDraw = true;
 	}
 	
 	void stopGame() {
@@ -34,6 +37,10 @@ public class GameLoop implements Runnable{
 		readyToDraw = true;
 	}
 	
+	void stopDrawing() {
+		readyToDraw = false;
+	}
+	
 	public void run() {
 		lastTime = System.nanoTime();
 		timer = System.currentTimeMillis();
@@ -43,14 +50,13 @@ public class GameLoop implements Runnable{
 			lastTime = now;
 			//RunnableObject.emptyQueue(); This will be implemented later when we add objects to the game
 			while(delta >= 1) {
-				//control.update(); To update the controls
-				//screen.update(); To update the screen
-				//RunnableObject.updateObjects(); To update the 
+				control.update(); //To update the controls
+				//RunnableObject.updateObjects(); To update the objects
 				delta --;
 			}
 			updates ++;
 			if(readyToDraw)
-				//screen.renderScreen(); To render the screen
+				screen.renderScreen(); //Render the screen
 			
 			if(System.currentTimeMillis() - timer > 1000) {
 				timer += 1000;
