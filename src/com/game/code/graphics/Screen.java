@@ -7,7 +7,6 @@ import java.awt.Rectangle;
 import java.awt.image.BufferStrategy;
 import javax.swing.JFrame;
 
-import com.game.code.Control;
 import com.game.code.GameLoop;
 
 /* This is the screen. It is what we render to.
@@ -21,13 +20,14 @@ public class Screen extends Canvas {
 	public static int width = 0, height = 0;
 	private Rectangle rect;
 	
-	
+	//Just in case we want a blank screen
 	public Screen() {
 		this("Untitled", 0, 0);
 	}
 	
 	//Sets up the Frame
 	public Screen(String title, int width, int height) {
+		this.width = width; this.height = height;
 		rect = new Rectangle(0, 0, width, height);
 		setBounds(rect);
 		frame.setResizable(false);
@@ -52,10 +52,8 @@ public class Screen extends Canvas {
 		g.fillRect(0, 0, getWidth(), getHeight());
 		g.setColor(Color.GREEN);
 		g.drawString("ups: " + GameLoop.frames, 0, 10);
-		g.drawString("  up: " + Control.up + "  |  Down: " + Control.down , 0, 25);
-		g.drawString("Left: " + Control.left + "  |  Right: " + Control.right , 0, 35);
+		RunnableObject.drawObjects(g); //Renders objects we create.
 		
-		//RunnableObject.drawObjects(); This will be used to render object we create.
 		g.dispose(); //Disposes of the graphics context to save memory space.
 		bs.show(); //displays the next frame in the buffer strategy.
 	}

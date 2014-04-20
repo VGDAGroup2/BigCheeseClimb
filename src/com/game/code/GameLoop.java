@@ -1,5 +1,6 @@
 package com.game.code;
 
+import com.game.code.graphics.RunnableObject;
 import com.game.code.graphics.Screen;
 
 public class GameLoop implements Runnable {
@@ -48,10 +49,10 @@ public class GameLoop implements Runnable {
 			now = System.nanoTime();
 			delta += (now - lastTime)/fps;
 			lastTime = now;
-			//RunnableObject.emptyQueue(); This will be implemented later when we add objects to the game
+			RunnableObject.emptyQueue();
 			while(delta >= 1) {
 				control.update(); //To update the controls
-				//RunnableObject.updateObjects(); To update the objects
+				RunnableObject.updateObjects(); //To update the objects
 				delta --;
 			}
 			updates ++;
