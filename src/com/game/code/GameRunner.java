@@ -1,5 +1,6 @@
 package com.game.code;
 
+import com.game.code.graphics.Floor;
 import com.game.code.graphics.MainCharacter;
 import com.game.code.graphics.Screen;
 
@@ -24,5 +25,6 @@ public class GameRunner {
 	//Also self explanatory, this will run the game portion.
 	public static void runGame() {
 		new MainCharacter();
+		new Floor();
 	}
 }

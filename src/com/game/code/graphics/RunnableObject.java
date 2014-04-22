@@ -1,6 +1,7 @@
 package com.game.code.graphics;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -18,19 +19,25 @@ import com.game.code.collision.Collidable;
 
 public abstract class RunnableObject {
 	static List<RunnableObject> list = new ArrayList<RunnableObject>();
+	static List<RunnableObject> collidables = new ArrayList<RunnableObject>();
 	static Queue<RunnableObject> input = new LinkedList<RunnableObject>(); //This is here as a buffer to prevent concurrent modification exceptions. (Two threads working on the same object).
 	double x = 0, y = 0;
+	Rectangle hitBox = null;
 	
 	public RunnableObject() {
 		input.add(this);
 		if(this instanceof Collidable) {
-			//add to collision detection. Will be implement later.
+			collidables.add(this);
 		}
 	}
 	
 	public abstract void update(); //Write object behaviors in this
 	public abstract void draw(Graphics g); //Write the how the object renders in this.
 	
+	public static List<RunnableObject> getCollidables(){
+		return collidables;
+	}
+
 	public static void emptyQueue() { //Empties the buffer queue
 		while(input.peek() != null) {
 			list.add(input.remove());
@@ -48,4 +55,5 @@ public abstract class RunnableObject {
 			j.draw(g);
 		}
 	}
+	
 }
