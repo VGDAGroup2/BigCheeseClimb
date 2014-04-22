@@ -2,31 +2,28 @@ package com.game.code.graphics;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Rectangle;
-import java.util.List;
+import java.awt.geom.Rectangle2D;
 
 import com.game.code.Control;
 import com.game.code.collision.Collidable;
 
-/*Pretty self explanatory, this is
+/*
+ * Pretty self explanatory, this is
  * our main character!
  */
 
 public class MainCharacter extends RunnableObject implements Collidable {
 	
 	private double speed = 2;
-	private int pWidth = 10;
-	private int pHeight = 10;
+	private int startingHeight = 50;
 	
 	public MainCharacter() {
 		super();
-		x = Screen.width*.5;
-		y = Screen.height - 50;
-		hitBox = new Rectangle((int)x,(int)y,pWidth,pHeight);
+		setRect(Screen.width*.5, Screen.height - startingHeight, 10, 10);
 	}
 	
 	public void update() {
-		if(isColliding(hitBox))
+		if(isColliding(this))
 			System.out.println("Colliding");
 		else
 			System.out.println("Not Colliding");
@@ -35,28 +32,23 @@ public class MainCharacter extends RunnableObject implements Collidable {
 		if(Control.down){y+=speed;}
 		if(Control.left){x-=speed;}
 		if(Control.right){x+=speed;}
-		if(x < -pWidth)
-			x = Screen.width;
-		if(x > Screen.width)
-			x = -pWidth;
-		hitBox = new Rectangle((int)x,(int)y,pWidth,pHeight);
+		if(x <= 0 || x >= Screen.width)
+			x = Screen.width - x;
 	}
 
 	public void draw(Graphics g) {
 		g.setColor(Color.RED);
-		g.drawRect((int)x, (int)y, pWidth, pHeight);
+		g.drawRect((int)x, (int)y, (int)width, (int)height);
 	}
 
-	public boolean isColliding(Rectangle r) {
-		List<RunnableObject> collidables = super.getCollidables();
+	public boolean isColliding(Rectangle2D.Double r) {
 		for(RunnableObject object: collidables){
 			if(!object.equals(this)){
-				if(r.intersects(object.hitBox)){
+				if(r.intersects(object)){
 					return true;
 				}
 			}
 		}
 		return false;
 	}
-
 }

@@ -1,7 +1,7 @@
 package com.game.code.graphics;
 
 import java.awt.Graphics;
-import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -17,12 +17,10 @@ import com.game.code.collision.Collidable;
  * the game loop.
  */
 
-public abstract class RunnableObject {
+public abstract class RunnableObject extends Rectangle2D.Double {
 	static List<RunnableObject> list = new ArrayList<RunnableObject>();
-	static List<RunnableObject> collidables = new ArrayList<RunnableObject>();
+	static List<RunnableObject> collidables = new ArrayList<RunnableObject>();// We should probably move this to a collision detection class once it is setup.
 	static Queue<RunnableObject> input = new LinkedList<RunnableObject>(); //This is here as a buffer to prevent concurrent modification exceptions. (Two threads working on the same object).
-	double x = 0, y = 0;
-	Rectangle hitBox = null;
 	
 	public RunnableObject() {
 		input.add(this);
@@ -33,10 +31,6 @@ public abstract class RunnableObject {
 	
 	public abstract void update(); //Write object behaviors in this
 	public abstract void draw(Graphics g); //Write the how the object renders in this.
-	
-	public static List<RunnableObject> getCollidables(){
-		return collidables;
-	}
 
 	public static void emptyQueue() { //Empties the buffer queue
 		while(input.peek() != null) {
