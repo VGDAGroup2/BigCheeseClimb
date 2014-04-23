@@ -8,32 +8,25 @@ import com.game.code.collision.Collidable;
 
 public class FallingPlatform extends RunnableObject implements Collidable{
 	
-	
 	public FallingPlatform(){
 		super();
 		Random rand = new Random();
 		double random = rand.nextDouble() * Screen.width;
-		setRect(random, 100, 100, 2);
-		System.out.println(random);
+		setRect(random, 0, 100, 1);
 	}
-
 
 	public void update() {
-		y++;
-		
+		y += .5;
+		if(y >= Screen.height)
+			output.add(this);
 	}
-
 	
 	public void draw(Graphics g) {
 		g.setColor(Color.GREEN);
-		g.fillRect((int)x, (int)y, (int) width,(int) (height*10));
-		
-		
+		g.fillRect((int)x, (int)y, (int) width,(int) height);
 	}
-
 
 	public boolean isColliding(Double r) {
 		return intersects(r); //if collidable, add this code
 	}
-
 }

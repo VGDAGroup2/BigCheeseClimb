@@ -1,10 +1,8 @@
 package com.game.code;
 
-import com.game.code.graphics.FallingPlatform;
 import com.game.code.graphics.Floor;
 import com.game.code.graphics.MainCharacter;
 import com.game.code.graphics.Screen;
-import com.game.code.graphics.PlatformControls;
 
 public class GameRunner {
 	
@@ -24,11 +22,8 @@ public class GameRunner {
 		System.out.println("The Menu is running");
 	}
 	
-	//Also self explanatory, this will run the game portion.
 	public static void runGame() {
 		new Floor();
-		//for (int i = 0; i < 5; i++)
-		//	new FallingPlatform();
 		new MainCharacter();
 		new PlatformControls();
 	}

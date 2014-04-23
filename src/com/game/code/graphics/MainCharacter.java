@@ -2,10 +2,8 @@ package com.game.code.graphics;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.geom.Rectangle2D;
 
 import com.game.code.Control;
-import com.game.code.collision.Collidable;
 import com.game.code.collision.CollisionDetection;
 
 /*
@@ -30,15 +28,10 @@ public class MainCharacter extends RunnableObject {
 	}
 	
 	public void update() {
-		//System.out.println("Jumping: " + isJumping);
-		//System.out.println("Falling " + isFalling);
-		//System.out.println("Jump: " + jump  + " jumpSpeed: " + jumpSpeed + " Is Jumping: " + isJumping);
 		if(CollisionDetection.detectColission(this) != null){
-			//System.out.println("Colliding");
 			isFalling = false;
 		}
 		else if(!isJumping){
-			//System.out.println("Not Colliding");
 			isFalling = true;
 		}
 		

@@ -15,11 +15,9 @@ public class Control implements KeyListener {
 	public static boolean up, down, left, right, jump;
 	
 	public void update() {
-		up = keys[KeyEvent.VK_UP] || keys[KeyEvent.VK_W];
-		down = keys[KeyEvent.VK_DOWN] || keys[KeyEvent.VK_S];
+		jump = keys[KeyEvent.VK_UP] || keys[KeyEvent.VK_W] || keys[KeyEvent.VK_SPACE];
 		left = keys[KeyEvent.VK_LEFT] || keys[KeyEvent.VK_A];
 		right = keys[KeyEvent.VK_RIGHT] || keys[KeyEvent.VK_D];
-		jump = keys[KeyEvent.VK_SPACE];
 	}
 
 	public void keyPressed(KeyEvent e) {
