@@ -1,5 +1,6 @@
 package com.game.code;
 
+import com.game.code.graphics.FallingPlatform;
 import com.game.code.graphics.Floor;
 import com.game.code.graphics.MainCharacter;
 import com.game.code.graphics.Screen;
@@ -26,5 +27,8 @@ public class GameRunner {
 	public static void runGame() {
 		new MainCharacter();
 		new Floor();
+		for (int i = 0; i < 5; i++)
+			new FallingPlatform();
+		
 	}
 }
