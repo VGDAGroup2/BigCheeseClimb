@@ -16,7 +16,7 @@ public class Floor extends RunnableObject implements Collidable{
 
 
 	public boolean isColliding(Rectangle2D.Double r) {
-		return false;
+		return intersects(r);
 	}
 
 	public void update() {

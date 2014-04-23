@@ -12,4 +12,5 @@ import java.awt.geom.Rectangle2D;
 
 public interface Collidable {
 	public boolean isColliding(Rectangle2D.Double r);
+	//if collidable add this: return intersects(r);
 }

@@ -25,10 +25,9 @@ public class GameRunner {
 	
 	//Also self explanatory, this will run the game portion.
 	public static void runGame() {
-		new MainCharacter();
 		new Floor();
 		for (int i = 0; i < 5; i++)
 			new FallingPlatform();
-		
+		new MainCharacter();
 	}
 }

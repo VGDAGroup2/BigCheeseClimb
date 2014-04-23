@@ -6,13 +6,14 @@ import java.awt.geom.Rectangle2D;
 
 import com.game.code.Control;
 import com.game.code.collision.Collidable;
+import com.game.code.collision.CollisionDetection;
 
 /*
  * Pretty self explanatory, this is
  * our main character!
  */
 
-public class MainCharacter extends RunnableObject implements Collidable {
+public class MainCharacter extends RunnableObject {
 	
 	private double speed = 2;
 	private int startingHeight = 50;
@@ -23,7 +24,7 @@ public class MainCharacter extends RunnableObject implements Collidable {
 	}
 	
 	public void update() {
-		if(isColliding(this))
+		if(CollisionDetection.detectColission(this) != null)
 			System.out.println("Colliding");
 		else
 			System.out.println("Not Colliding");
@@ -39,16 +40,5 @@ public class MainCharacter extends RunnableObject implements Collidable {
 	public void draw(Graphics g) {
 		g.setColor(Color.RED);
 		g.drawRect((int)x, (int)y, (int)width, (int)height);
-	}
-
-	public boolean isColliding(Rectangle2D.Double r) {
-		for(RunnableObject object: collidables){
-			if(!object.equals(this)){
-				if(r.intersects(object)){
-					return true;
-				}
-			}
-		}
-		return false;
 	}
 }

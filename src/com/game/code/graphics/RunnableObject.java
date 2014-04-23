@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Queue;
 
 import com.game.code.collision.Collidable;
+import com.game.code.collision.CollisionDetection;
 
 /*This class Handles our object creation.
  * Any object that extends this class
@@ -19,13 +20,12 @@ import com.game.code.collision.Collidable;
 
 public abstract class RunnableObject extends Rectangle2D.Double {
 	static List<RunnableObject> list = new ArrayList<RunnableObject>();
-	static List<RunnableObject> collidables = new ArrayList<RunnableObject>();// We should probably move this to a collision detection class once it is setup.
 	static Queue<RunnableObject> input = new LinkedList<RunnableObject>(); //This is here as a buffer to prevent concurrent modification exceptions. (Two threads working on the same object).
 	
 	public RunnableObject() {
 		input.add(this);
 		if(this instanceof Collidable) {
-			collidables.add(this);
+			CollisionDetection.collidables.add((Collidable)this);
 		}
 	}
 	

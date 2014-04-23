@@ -33,8 +33,7 @@ public class FallingPlatform extends RunnableObject implements Collidable{
 
 
 	public boolean isColliding(Double r) {
-		// TODO Auto-generated method stub
-		return false;
+		return intersects(r); //if collidable, add this code
 	}
 
 }
