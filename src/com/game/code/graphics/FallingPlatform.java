@@ -13,7 +13,7 @@ public class FallingPlatform extends RunnableObject implements Collidable{
 		super();
 		Random rand = new Random();
 		double random = rand.nextDouble() * Screen.width;
-		setRect(random, 100, 100, 20);
+		setRect(random, 100, 100, 2);
 		System.out.println(random);
 	}
 
@@ -26,7 +26,7 @@ public class FallingPlatform extends RunnableObject implements Collidable{
 	
 	public void draw(Graphics g) {
 		g.setColor(Color.GREEN);
-		g.fillRect((int)x, (int)y, (int) width,(int) height);
+		g.fillRect((int)x, (int)y, (int) width,(int) (height*10));
 		
 		
 	}
