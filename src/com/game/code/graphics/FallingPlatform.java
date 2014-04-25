@@ -11,7 +11,7 @@ public class FallingPlatform extends RunnableObject implements Collidable{
 	public FallingPlatform(){
 		super();
 		Random rand = new Random();
-		double random = rand.nextDouble() * Screen.width;
+		double random = rand.nextDouble() * (Screen.width - 100);
 		setRect(random, 0, 100, 1);
 	}
 

@@ -11,7 +11,7 @@ public class PlatformControls {
 	public PlatformControls() {
 		platformTimer = new Timer();
 		platformTimer.schedule(new RemindTask(), 0, //initial delay (this could be set higher to accommodate level start)
-	    1 * 1000); //subsequent rate (1000 =  1 sec)
+	    2 * 1000); //subsequent rate (1000 =  1 sec)
 	}
 	
 	class RemindTask extends TimerTask {

@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 import com.game.code.Control;
+import com.game.code.GameState;
 import com.game.code.collision.CollisionDetection;
 
 /*
@@ -11,16 +12,22 @@ import com.game.code.collision.CollisionDetection;
  * our main character!
  */
 
-public class MainCharacter extends RunnableObject {
+public class MainCharacter extends RunnableObject{
 	
-	private boolean isFalling = false; //May change to isGrounded instead later.
+	private int IV = 4;		//Edit this variable to change the instantaneous velocity of the player's jump.
+	private boolean isFalling = false;		
 	private boolean isJumping = false;
 	private double speed = 2;
-	private double maxJump = 10;
-	private double jumpSpeed = 0.2;
-	private boolean slowed = false;
-	private double jump = 5;
-	private int startingHeight = 50;
+	private double jump = 5;		//Affects how high the player can jump.
+	private double fall = 1.1;
+	private int startingHeight = 19;
+	private int pHeight = 0;		//The players height before each jump.
+	private double maxJump = pHeight - jump;	//Maximum jump is calculated by the player's current height subtracted by how high he can jump.
+	private double jumpTime = 0;		//Used for calculating velocity.
+	private double curTime = 0;			//Used for calculating velocity.
+	private double acceleration = 0.2 / 1000000000; 		//How fast the player accelerates moving up and down during a jump.
+	private int instantV = IV;
+	private double velocity = acceleration*curTime + instantV; //Formula V(t)= at+v where a is acceleration and v is the instant velocity.
 	
 	public MainCharacter() {
 		super();
@@ -28,52 +35,62 @@ public class MainCharacter extends RunnableObject {
 	}
 	
 	public void update() {
-		if(CollisionDetection.detectColission(this) != null){ //Checks to see if it is colliding with something.
+		
+		//System.out.println("Jumping: " + isJumping + " Falling: " + isFalling + " Velocity: " + velocity);
+		//System.out.println("Velocity: " + velocity + " Instananeous Velocity: " + instantV + " Acceleration: " + acceleration);
+		//System.out.println("Player Height: " + pHeight + " Max Jump: " + maxJump);
+		//System.out.println("Jump Time: " + jumpTime + " Current Time: " + curTime);
+		
+		curTime += System.currentTimeMillis() / 1000;
+		if(CollisionDetection.detectColission(this) != null){
+			instantV = IV;
 			isFalling = false;
+			if(!(CollisionDetection.detectColission(this) instanceof FallingPlatform)){ //Only calls these two if it isn't colliding with a platform.
+				pHeight = (int)y;
+				jumpTime = 0;
+			}
 		}
 		else if(!isJumping){
-			isFalling = true; //If it isn't colliding with anything and it isn't jumping then it is falling.
+			isFalling = true; 
 		}
 		
 		//Player Control -- Jump
+		velocity = acceleration * jumpTime + instantV;		//Calculates the velocity during the jump.
 		if(!isFalling){	
-			if(Control.jump){                       //Checks to see if it isn't falling.
-				if(!isJumping)						//If it isn't falling then it checks if it isn't already jumping. If it isn't set the jump to 5.
-					jump = 5;
+			if(Control.jump && !isJumping){             
 				isJumping = true;
+				maxJump = pHeight - jump;
+				curTime = 0;
 			}
-			if(isJumping){										//If the player isJumping then
-				if(jump < maxJump && jump > 0){					//if the jump amount is less than the maximum height it can jump to and jump isn't a negative number
-					y-= jump;									//the player will jump.
-					jump += jumpSpeed;							//jumpSpeed is to give it the effect that it slows down as it gets to the peak of the jump.
-					if(jump < (maxJump / 2) && !slowed)			//if the player hasn't reached the peak(slowed) and the jump height is 
-						jumpSpeed += 0.05;						//less than half the maximum jump height then the player is speed up.
-					else if(jump > (maxJump / 2)){				//else if it is higher than half the maximum jump height it will start to slow down.
-						slowed = true;							//slowed is set to true here
-						jumpSpeed -= 0.05;
+			if(isJumping){										
+					y -= velocity;									
+					pHeight -= velocity;
+					jumpTime = curTime - jumpTime;
+					if(pHeight < maxJump && acceleration > 0 && CollisionDetection.detectColission(this) == null){	//If the player's height is higher than
+						acceleration = -acceleration;																//how high he can jump then start decelerating.
+						curTime = 0;								//Velocity is recalculated					
+						jumpTime = 0;								//starting from the velocity at the peak of the
+						instantV = (int)velocity;					//player's jump.
 					}
-				}
-				else{
-					jumpSpeed = 0;								//Player isn't jumping anymore so jump speed is set to 0.
-					isFalling = true;							//and the player is now falling.
-				}
+					else if(CollisionDetection.detectColission(this) !=null){
+						if(velocity <= 0){					//If the player is on the way down then
+							acceleration =-acceleration;	//reset the variables
+							isJumping = false;				
+							pHeight = (int)y;
+							jumpTime = 0;
+						}
+					}
 			}
 				
 		}
-		else{													//The player is falling
-			y+=jump;			
-			if(isJumping){										//If the player jumped then the second part of the jump is activated.
-				jump += jumpSpeed;								//What happens is the speed at which the player falls increases until it his the cap 0.2.
-				if(jumpSpeed < 0.2)
-					jumpSpeed += 0.05;
-			}														
-			if(CollisionDetection.detectColission(this) !=null){	//If player is colliding with something then it is no longer jumping.
-				isJumping = false;									//and jumpSpeed is reset to its original value.
-				jumpSpeed = 0.2;
-				jump = 1.1;											//jump is set to 1.1 here because if it falling at the same rate as the platforms the 
-			}														//collision isn't detected.
-			else if(jump == 1.1)									//if the player walks off the platform 
-				jump = 5;											//then the jump is reset to 5.
+		else{
+			y+=fall; 													//Player falls
+			if(CollisionDetection.detectColission(this) != null){		//If it detects an object the fall speed is 1.1 (.1 faster than falling platform)
+				fall = 1.1;
+			}
+			else if(fall == 1.1){										//if it moves off the falling object then set its fall speed to velocity.
+				fall = velocity;
+			}
 		}
 		//Player Control -- Move Left and Right
 		if(Control.left){x-=speed;}
