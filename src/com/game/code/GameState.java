@@ -7,5 +7,6 @@ package com.game.code;
  */
 
 public  class GameState {
-	static double blockFallSpeed;
+	public static double fallRate = .5;
+	public static double heightReached;
 }

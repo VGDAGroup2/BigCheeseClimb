@@ -1,24 +1,36 @@
 package com.game.code;
-import java.util.Timer;
-import java.util.TimerTask;
+
+import java.util.ArrayList;
 
 import com.game.code.graphics.FallingPlatform;
 
-public class PlatformControls {
-	Timer platformTimer;
+public class PlatformControls {	
 	
+	static ArrayList<FallingPlatform> platforms = new ArrayList<FallingPlatform>();
+	private static int spawnRate = 60; //If a platform falls this far, it will spawn a new one. 
 	
 	public PlatformControls() {
-		platformTimer = new Timer();
-		platformTimer.schedule(new RemindTask(), 0, //initial delay (this could be set higher to accommodate level start)
-	    2 * 1000); //subsequent rate (1000 =  1 sec)
+		
 	}
 	
-	class RemindTask extends TimerTask {
-		public void run() {
-			new FallingPlatform();
-			//platformTimer.cancel(); (can be used to end timer if necessary)
+	public static void newPlatform() {
+		if(platforms.size() > 0) {
+			if(platforms.get(platforms.size() - 1).y >= spawnRate) {
+				platforms.add(new FallingPlatform());
+			}
+		} else {
+			platforms.add(new FallingPlatform());
 		}
+	}
+	
+	public static void removePlatform(FallingPlatform fp) {
+		if(platforms.contains(fp))
+			platforms.remove(fp);
+	}
+	
+	public static void movePlatforms(double y) {
+		for(FallingPlatform f : platforms)
+			f.moveMore(y);
 	}
 }
 

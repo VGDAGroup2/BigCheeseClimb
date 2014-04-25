@@ -8,6 +8,7 @@ import java.awt.image.BufferStrategy;
 import javax.swing.JFrame;
 
 import com.game.code.GameLoop;
+import com.game.code.GameState;
 
 /* This is the screen. It is what we render to.
  * The screen holds a graphics context, and is
@@ -52,6 +53,7 @@ public class Screen extends Canvas {
 		g.fillRect(0, 0, getWidth(), getHeight());
 		g.setColor(Color.GREEN);
 		g.drawString("ups: " + GameLoop.frames, 0, 10);
+		g.drawString("Height: " + GameState.heightReached / 60, 0, 20);
 		RunnableObject.drawObjects(g); //Renders objects we create.
 		
 		g.dispose(); //Disposes of the graphics context to save memory space.
