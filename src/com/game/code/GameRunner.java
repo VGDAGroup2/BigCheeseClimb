@@ -1,5 +1,6 @@
 package com.game.code;
 
+import com.game.code.graphics.Floor;
 import com.game.code.graphics.MainCharacter;
 import com.game.code.graphics.Screen;
 
@@ -21,8 +22,9 @@ public class GameRunner {
 		System.out.println("The Menu is running");
 	}
 	
-	//Also self explanatory, this will run the game portion.
 	public static void runGame() {
+		new Floor();
 		new MainCharacter();
+		new PlatformControls();
 	}
 }

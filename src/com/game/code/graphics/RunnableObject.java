@@ -1,12 +1,14 @@
 package com.game.code.graphics;
 
 import java.awt.Graphics;
+import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
 import com.game.code.collision.Collidable;
+import com.game.code.collision.CollisionDetection;
 
 /*This class Handles our object creation.
  * Any object that extends this class
@@ -16,25 +18,26 @@ import com.game.code.collision.Collidable;
  * the game loop.
  */
 
-public abstract class RunnableObject {
+public abstract class RunnableObject extends Rectangle2D.Double {
 	static List<RunnableObject> list = new ArrayList<RunnableObject>();
 	static Queue<RunnableObject> input = new LinkedList<RunnableObject>(); //This is here as a buffer to prevent concurrent modification exceptions. (Two threads working on the same object).
-	double x = 0, y = 0;
+	static Queue<RunnableObject> output = new LinkedList<RunnableObject>(); //This is here for a removal buffer
 	
 	public RunnableObject() {
 		input.add(this);
 		if(this instanceof Collidable) {
-			//add to collision detection. Will be implement later.
+			CollisionDetection.collidables.add((Collidable)this);
 		}
 	}
 	
 	public abstract void update(); //Write object behaviors in this
 	public abstract void draw(Graphics g); //Write the how the object renders in this.
-	
-	public static void emptyQueue() { //Empties the buffer queue
-		while(input.peek() != null) {
+
+	public static void emptyQueue() {
+		while(output.peek() != null)
+			list.remove(output.remove());
+		while(input.peek() != null)
 			list.add(input.remove());
-		}
 	}
 	
 	public static void updateObjects() { //Updates all runnable objects
@@ -48,4 +51,5 @@ public abstract class RunnableObject {
 			j.draw(g);
 		}
 	}
+	
 }

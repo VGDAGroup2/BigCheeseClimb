@@ -1,9 +1,11 @@
-Large update. I finished the rendering and update cycles. We can now create objects as we please.
+Falling Platforms Game mechanic complete!
+The character now cannot move above the midpoint of the screen and when he tries to it just moves the platforms down faster.
 
-Runnable Object has been added. Please take a good look at it for it is the base of almost everything we render to the screen. Feel free to create your own objects to test it out. What we need now is defined character movement and falling blocks. I could really use some help with that.
+Reworked Platform Controls to spawn platforms after the previous one has gone a certain distance. (You did good work Josh it just needed to change for this).
 
-I also started setting up collision detection. That stuff is incredibly difficult and I will be attempting to tackle it next week.
+Removed some "fat" from MainCharacter and added the mechanic that does not allow him to go higher.
 
-As for the menu, we really need the art to do anything major with it so I think we should wait on it a bit.
+Added a height reached variable to GameState. It will keep track of our total height. It still needs some work.
 
-Have fun with it! 
+I think we have done an amazing amount of work on the game itself. Great Job to all of you. It is time to move to the next phase:
+Let's start working on the menu. Remember, the menu should have 3 buttons. 1: Start the game; 2: Instructions; 3: Credits.

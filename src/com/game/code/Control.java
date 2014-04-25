@@ -12,11 +12,10 @@ import java.awt.event.KeyListener;
 
 public class Control implements KeyListener {
 	private boolean[] keys = new boolean[256];
-	public static boolean up, down, left, right;
+	public static boolean up, down, left, right, jump;
 	
 	public void update() {
-		up = keys[KeyEvent.VK_UP] || keys[KeyEvent.VK_W];
-		down = keys[KeyEvent.VK_DOWN] || keys[KeyEvent.VK_S];
+		jump = keys[KeyEvent.VK_UP] || keys[KeyEvent.VK_W] || keys[KeyEvent.VK_SPACE];
 		left = keys[KeyEvent.VK_LEFT] || keys[KeyEvent.VK_A];
 		right = keys[KeyEvent.VK_RIGHT] || keys[KeyEvent.VK_D];
 	}

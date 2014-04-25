@@ -1,6 +1,6 @@
 package com.game.code.collision;
 
-import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
 
 /*
  * We use this to set up the collision
@@ -11,5 +11,6 @@ import java.awt.Rectangle;
  */
 
 public interface Collidable {
-	public boolean isColliding(Rectangle r);
+	public boolean isColliding(Rectangle2D.Double r);
+	//if collidable add this: return intersects(r);
 }
