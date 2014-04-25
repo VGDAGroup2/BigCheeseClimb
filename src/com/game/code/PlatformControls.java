@@ -1,5 +1,7 @@
 package com.game.code;
 
+import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import com.game.code.graphics.FallingPlatform;
@@ -16,10 +18,10 @@ public class PlatformControls {
 	public static void newPlatform() {
 		if(platforms.size() > 0) {
 			if(platforms.get(platforms.size() - 1).y >= spawnRate) {
-				platforms.add(new FallingPlatform());
+				platforms.add(new FallingPlatform("/cloudPlatform.png"));
 			}
 		} else {
-			platforms.add(new FallingPlatform());
+			platforms.add(new FallingPlatform("/cloudPlatform.png"));
 		}
 	}
 	
