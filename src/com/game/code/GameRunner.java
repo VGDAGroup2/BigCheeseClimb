@@ -9,6 +9,7 @@ public class GameRunner {
 	//The init method will setup the game. I.E. getting a frame and controls running
 	public static void init() {
 		Screen screen = new Screen("Big Cheese Climb", 400, 600);
+		new Assets().load();
 		Control controls = new Control();
 		screen.addKeyListener(controls);
 		GameLoop loop = new GameLoop(screen, controls);
