@@ -1,5 +1,6 @@
 package com.game.code;
 
+import com.game.code.graphics.Background;
 import com.game.code.graphics.Floor;
 import com.game.code.graphics.MainCharacter;
 import com.game.code.graphics.Screen;
@@ -24,8 +25,10 @@ public class GameRunner {
 	}
 	
 	public static void runGame() {
+		System.gc();
+		new Background(Assets.BACKGROUND);
 		new Floor();
-		new MainCharacter();
+		new MainCharacter(Assets.MOUSE);
 		new PlatformControls();
 	}
 }

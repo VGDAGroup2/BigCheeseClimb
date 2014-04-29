@@ -12,7 +12,6 @@ public class FallingPlatform extends RunnableObject implements Collidable{
 	private BufferedImage image;
 	
 	public FallingPlatform(BufferedImage i, double rand, double pWidth){
-		super();
 		setRect(rand, 0, pWidth, 1);
 		image = i;
 	}
@@ -22,6 +21,7 @@ public class FallingPlatform extends RunnableObject implements Collidable{
 		if(y >= Screen.height) {
 			output.add(this);
 			PlatformControls.removePlatform(this);
+			output.add(this);
 		}
 	}
 	

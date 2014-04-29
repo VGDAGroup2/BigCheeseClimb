@@ -1,1 +1,1 @@
-Added the Assets class. If you want to load an asset do it there.
+Added more assets and the background.

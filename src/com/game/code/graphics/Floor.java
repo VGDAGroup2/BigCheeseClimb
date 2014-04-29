@@ -3,6 +3,8 @@ package com.game.code.graphics;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.geom.Rectangle2D;
+
+import com.game.code.GameState;
 import com.game.code.collision.Collidable;
 
 public class Floor extends RunnableObject implements Collidable{
@@ -20,7 +22,8 @@ public class Floor extends RunnableObject implements Collidable{
 	}
 
 	public void update() {
-		//Nothing here
+		if(GameState.floorTrigger)
+			output.add(this);
 	}
 
 	public void draw(Graphics g) {
