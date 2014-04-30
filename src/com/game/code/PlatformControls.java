@@ -13,7 +13,7 @@ public class PlatformControls {
 	private static int spawnRate = 60; //If a platform falls this far, it will spawn a new one. 
 	private static double pWidth = 100; 
 	private static Random rand = new Random();
-	static BufferedImage using = Assets.PLATFORM_LEAF;
+	static BufferedImage using = Assets.PLATFORM_SPACE;
 	
 	public PlatformControls() {
 		

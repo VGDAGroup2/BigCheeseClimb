@@ -12,7 +12,6 @@ public class Floor extends RunnableObject implements Collidable{
 	private int fHeight = 10;
 	
 	public Floor(){
-		super();
 		setRect(0, Screen.height - fHeight, Screen.width, fHeight);
 	}
 
