@@ -19,7 +19,7 @@ public class Assets {
 	public static BufferedImage MOUSE;
 	public static BufferedImage BUTTON_START;
 	
-	public static void load() {
+	public void load() {
 		PLATFORM_LEAF = loadImage("/leafPlatform.png");
 		PLATFORM_CLOUD = loadImage("/cloudPlatform.png");
 		BACKGROUND = loadImage("/background.png");

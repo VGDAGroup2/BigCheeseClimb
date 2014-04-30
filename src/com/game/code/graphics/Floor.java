@@ -8,7 +8,7 @@ import com.game.code.GameState;
 import com.game.code.collision.Collidable;
 
 public class Floor extends RunnableObject implements Collidable{
-	
+	private static final long serialVersionUID = 1L;
 	private int fHeight = 10;
 	
 	public Floor(){
@@ -23,7 +23,7 @@ public class Floor extends RunnableObject implements Collidable{
 
 	public void update() {
 		if(GameState.floorTrigger)
-			output.add(this);
+			removeMe();
 	}
 
 	public void draw(Graphics g) {

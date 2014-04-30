@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import com.game.code.Control;
+import com.game.code.GameRunner;
 import com.game.code.GameState;
 import com.game.code.PlatformControls;
 import com.game.code.collision.CollisionDetection;
@@ -15,7 +16,7 @@ import com.game.code.collision.CollisionDetection;
  */
 
 public class MainCharacter extends RunnableObject{
-
+	private static final long serialVersionUID = 1L;
 	private int IV = 7;		//Edit this variable to change the instantaneous velocity of the player's jump.
 	private boolean isFalling = false;		
 	private boolean isJumping = false;
@@ -36,12 +37,6 @@ public class MainCharacter extends RunnableObject{
 	}
 
 	public void update() {
-
-		//System.out.println("Jumping: " + isJumping + " Falling: " + isFalling + " Velocity: " + velocity);
-		//System.out.println("Velocity: " + velocity + " Instananeous Velocity: " + instantV + " Acceleration: " + acceleration);
-		//System.out.println("Player Height: " + pHeight + " Max Jump: " + maxJump);
-		//System.out.println("Jump Time: " + jumpTime + " Current Time: " + curTime);
-
 		curTime += System.currentTimeMillis() / 1000;
 		if(CollisionDetection.detectColission(this) != null) {
 			instantV = IV;
@@ -90,6 +85,11 @@ public class MainCharacter extends RunnableObject{
 			PlatformControls.movePlatforms(hMod);
 			y += (hMod);
 			GameState.heightReached += hMod/60;
+		}
+		
+		if(y > Screen.height) { //DEATH!!!
+			GameRunner.resetGame();
+			GameRunner.runMenu();
 		}
 
 		//Player Control -- Move Left and Right

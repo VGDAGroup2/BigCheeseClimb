@@ -4,11 +4,10 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import com.game.code.GameState;
-import com.game.code.PlatformControls;
 import com.game.code.collision.Collidable;
 
 public class FallingPlatform extends RunnableObject implements Collidable{
-	
+	private static final long serialVersionUID = 1L;
 	private BufferedImage image;
 	
 	public FallingPlatform(BufferedImage i, double rand, double pWidth){
@@ -19,9 +18,7 @@ public class FallingPlatform extends RunnableObject implements Collidable{
 	public void update() {
 		y += GameState.fallRate;
 		if(y >= Screen.height) {
-			output.add(this);
-			PlatformControls.removePlatform(this);
-			output.add(this);
+			removeMe();
 		}
 	}
 	

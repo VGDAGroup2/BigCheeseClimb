@@ -28,7 +28,7 @@ public class Screen extends Canvas {
 	
 	//Sets up the Frame
 	public Screen(String title, int width, int height) {
-		this.width = width; this.height = height;
+		Screen.width = width; Screen.height = height;
 		rect = new Rectangle(0, 0, width, height);
 		setBounds(rect);
 		frame.setResizable(false);

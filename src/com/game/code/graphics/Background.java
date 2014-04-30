@@ -5,21 +5,24 @@ import java.awt.image.BufferedImage;
 
 import com.game.code.GameState;
 
+/*
+ * This class runs our background image; 
+ */
+
 public class Background extends RunnableObject {
+	private static final long serialVersionUID = 1L;
 	BufferedImage image;
 	double percent = 0;
 	int sHeight = -5000 + Screen.height;
-	int eHeight = 5000;
 	
 	public Background(BufferedImage i) {
 		image = i;
-		setRect(0, sHeight, Screen.width, eHeight);
+		setRect(0, sHeight, Screen.width, 5000);
 	}
 	
 	public void update() {
 		percent = (1 - (GameState.heightReached/GameState.MAX_HEIGHT));
 		y = sHeight * percent;
-		System.out.println(percent * 100);
 	}
 	
 	public void draw(Graphics g) {
