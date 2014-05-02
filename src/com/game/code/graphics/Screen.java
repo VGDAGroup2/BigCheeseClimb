@@ -5,17 +5,24 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferStrategy;
+
 import javax.swing.JFrame;
+import javax.swing.JButton;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import com.game.code.GameLoop;
+import com.game.code.GameRunner;
 import com.game.code.GameState;
+
 
 /* This is the screen. It is what we render to.
  * The screen holds a graphics context, and is
  * set to any initial size and title.
 */
 
-public class Screen extends Canvas {
+public class Screen extends Canvas{
 	private static final long serialVersionUID = 1L;
 	public static JFrame frame = new JFrame();
 	public static int width = 0, height = 0;
@@ -58,5 +65,46 @@ public class Screen extends Canvas {
 		
 		g.dispose(); //Disposes of the graphics context to save memory space.
 		bs.show(); //displays the next frame in the buffer strategy.
+	}
+	
+	public static void buildMenu(){
+		//builds all 3 buttons 
+		JButton startButton = new JButton("Start");
+		JButton instructButton = new JButton("Instructions");
+		JButton creditButton = new JButton("Credits");
+		//actionlistener for start
+		startButton.addActionListener(new ActionListener() {
+ 
+            public void actionPerformed(ActionEvent start)
+            {
+            	GameRunner.runGame();
+            }
+        });      
+
+		frame.add(startButton);
+		//actionlistener for instructions
+		instructButton.addActionListener(new ActionListener() {
+ 
+            public void actionPerformed(ActionEvent inst)
+            {
+                //Should build instructions graphics object
+                System.out.println("run instructions");
+            }
+        });      
+		
+		frame.add(instructButton); 
+		creditButton.addActionListener(new ActionListener() {
+ 
+            public void actionPerformed(ActionEvent credit)
+            {
+                //should run credits
+                System.out.println("run credits");
+            }
+        });      
+		
+		frame.add(creditButton); 
+
+		
+		  
 	}
 }

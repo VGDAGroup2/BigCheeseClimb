@@ -31,6 +31,8 @@ public class GameRunner {
 	
 	//Self explanatory, this runs the menu
 	public static void runMenu() {
+		Screen.buildMenu();
+
 		System.out.println("The Menu is running");
 	}
 	
