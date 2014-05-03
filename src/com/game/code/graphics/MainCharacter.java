@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
+import com.game.code.Assets;
 import com.game.code.Control;
 import com.game.code.GameRunner;
 import com.game.code.GameState;
@@ -33,7 +34,7 @@ public class MainCharacter extends RunnableObject{
 	
 	public MainCharacter(BufferedImage i) {
 		setRect(Screen.width*.5, Screen.height - startingHeight, 30, 35);
-		image = i;
+		image = Assets.getScaledInstance(i, (int)width, (int)height, true);
 	}
 
 	public void update() {
@@ -101,6 +102,6 @@ public class MainCharacter extends RunnableObject{
 
 	public void draw(Graphics g) {
 		g.setColor(Color.RED);
-		g.drawImage(image, (int)x, (int)y, (int)(x + width), (int)(y + height), (int)0, (int)0, (int)(image.getWidth()), (int)(image.getHeight()), null);
+		g.drawImage(image, (int)x, (int)y, null);
 	}
 }

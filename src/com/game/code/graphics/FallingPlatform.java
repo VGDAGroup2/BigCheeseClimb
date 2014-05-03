@@ -1,21 +1,20 @@
 package com.game.code.graphics;
 
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.image.BufferedImage;
 
 import com.game.code.Assets;
 import com.game.code.GameState;
 import com.game.code.collision.Collidable;
 
-public class FallingPlatform extends RunnableObject implements Collidable{
+public class FallingPlatform extends RunnableObject implements Collidable {
 	private static final long serialVersionUID = 1L;
 	private BufferedImage image;
 	private int platformScale = 40;
 	
-	public FallingPlatform(BufferedImage i, double rand, double pWidth){
+	public FallingPlatform(BufferedImage i, double rand, double pWidth) {
 		setRect(rand, 0, pWidth, 1);
-		image = Assets.getScaledInstance(Assets.PLATFORM_SPACE, (int)width, (int)height * platformScale, true);
+		image = Assets.getScaledInstance(i, (int)width, (int)height * platformScale, true);
 	}
 
 	public void update() {

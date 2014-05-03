@@ -60,20 +60,21 @@ public class Assets {
 
 		do { //half the size, buffer and render. Keep doing this until you reach the target size.
 			if (higherQuality && w > targetWidth) {
-				w /= 2;
+				w *= .5;
 				if (w < targetWidth)
 					w = targetWidth;
 			}
 
 			if (higherQuality && h > targetHeight) {
-				h /= 2;
+				h *= .5;
 				if (h < targetHeight)
 				h = targetHeight;
 			}
 
 			BufferedImage tmp = new BufferedImage(w, h, type);
 			Graphics2D g2 = tmp.createGraphics();
-			g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
+			g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+			//g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
 			g2.drawImage(ret, 0, 0, w, h, null);
 			g2.dispose();
 

@@ -59,9 +59,9 @@ public class Screen extends Canvas{
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, getWidth(), getHeight());
 		g.setColor(Color.GREEN);
-		g.drawString("ups: " + GameLoop.frames, 0, 10);
 		g.drawString("Height: " + (int)(GameState.heightReached / 60), 0, 20);
 		RunnableObject.drawObjects(g); //Renders objects we create.
+		g.drawString("ups: " + GameLoop.frames, 0, 10);
 		
 		g.dispose(); //Disposes of the graphics context to save memory space.
 		bs.show(); //displays the next frame in the buffer strategy.
