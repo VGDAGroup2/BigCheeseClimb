@@ -25,6 +25,8 @@ public class Assets {
 	public static BufferedImage BACKGROUND;
 	public static BufferedImage MOUSE;
 	public static BufferedImage BUTTON_START;
+	public static BufferedImage BUTTON_CONTROLS;
+	public static BufferedImage BUTTON_CREDITS;
 	
 	public void load() {
 		PLATFORM_LEAF = loadImage("/leafPlatform.png");
@@ -33,6 +35,8 @@ public class Assets {
 		BACKGROUND = loadImage("/background.png");
 		MOUSE = loadImage("/mouse.png");
 		BUTTON_START = loadImage("/startButton.png");
+		BUTTON_CONTROLS = loadImage("/controlsButton.png");
+		BUTTON_CREDITS = loadImage("/creditsButton.png");
 	}
 	
 	private static BufferedImage loadImage(String path) {

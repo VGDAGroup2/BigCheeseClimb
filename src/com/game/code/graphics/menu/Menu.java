@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
 
-import com.game.code.Control;
+import com.game.code.Assets;
 import com.game.code.GameRunner;
 import com.game.code.graphics.RunnableObject;
 import com.game.code.graphics.Screen;
@@ -26,9 +26,12 @@ public class Menu extends RunnableObject {
 	}
 	
 	private void setupGUI() {
-		start = new CustomButton(100, 100, 200, 100, null);
-		instructions = new CustomButton(100, 300, 200, 100, null);
-		credits = new CustomButton(100, 500, 200, 100, null);
+		int w = 150, h = 75;
+		int bX = Screen.width/2 - w/2;
+		int sHeight = 125, hMod = 150;
+		start = new CustomButton(bX , sHeight + hMod * 0, w, h, Assets.BUTTON_START);
+		instructions = new CustomButton(bX, sHeight + hMod * 1, w, h, Assets.BUTTON_CONTROLS);
+		credits = new CustomButton(bX, sHeight + hMod * 2, w, h, Assets.BUTTON_CREDITS);
 	}
 	
 	public static void runAction(CustomButton b) {
