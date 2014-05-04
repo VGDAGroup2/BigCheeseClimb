@@ -1,5 +1,2 @@
-Started the Menu. Hopefully this will help you out Josh. We should have the art for it soon.
-
-Added Mouse functionality to Control. Added the menu, it is somewhat functional.
-
-The menu is in the form of Menu Class and Custom Button.
+Character now changes direction.
+Regarding the code used to manipulate the image -- I understand the basic concept of what is going on, but I don't have a full understanding of it.

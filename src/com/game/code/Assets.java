@@ -3,8 +3,11 @@ package com.game.code;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.Transparency;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+
 import javax.imageio.ImageIO;
 
 import com.game.code.graphics.RunnableObject;
@@ -81,5 +84,13 @@ public class Assets {
 			ret = tmp;
 		} while (w != targetWidth || h != targetHeight);
 		return ret;
+	}
+
+	public static BufferedImage flipImage(BufferedImage img){						//This method will take an image and flip it by scaling it
+		AffineTransform trans1 = AffineTransform.getScaleInstance(-1, 1);			//horizontally by the value of its negative width.
+		trans1.translate(-img.getWidth(), 0);										
+		AffineTransformOp trans2 = new AffineTransformOp(trans1, null);
+		return trans2.filter(img, null);
+		
 	}
 }

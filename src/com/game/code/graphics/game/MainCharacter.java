@@ -100,10 +100,22 @@ public class MainCharacter extends RunnableObject{
 		if(Control.right){x+=speed;}
 		if(x <= 0 || x >= Screen.width) //Moves between left and right sides of the screen.
 			x = Screen.width - x;
+		
+		//Changes direction player is facing.
+		if(Control.left){
+			if(!GameState.playerFaceLeft)
+				image = Assets.flipImage(image);
+			GameState.playerFaceLeft = true;
+		}
+		else if(Control.right){
+			if(GameState.playerFaceLeft)
+				image = Assets.flipImage(image);
+			GameState.playerFaceLeft = false;
+		}
+			
 	}
 
 	public void draw(Graphics g) {
-		g.setColor(Color.RED);
-		g.drawImage(image, (int)x, (int)y, null);
+		g.drawImage(image, (int)x, (int)y, (int)width, (int)height, null);
 	}
 }
