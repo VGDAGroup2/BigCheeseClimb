@@ -51,7 +51,8 @@ public class GameLoop implements Runnable {
 			lastTime = now;
 			RunnableObject.emptyQueue();
 			while(delta >= 1) {
-				PlatformControls.newPlatform();
+				if(GameState.gameRunning)
+					PlatformControls.newPlatform();
 				control.update(); //To update the controls
 				RunnableObject.updateObjects(); //To update the objects
 				delta --;

@@ -5,17 +5,24 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferStrategy;
+
 import javax.swing.JFrame;
+import javax.swing.JButton;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import com.game.code.GameLoop;
+import com.game.code.GameRunner;
 import com.game.code.GameState;
+
 
 /* This is the screen. It is what we render to.
  * The screen holds a graphics context, and is
  * set to any initial size and title.
 */
 
-public class Screen extends Canvas {
+public class Screen extends Canvas{
 	private static final long serialVersionUID = 1L;
 	public static JFrame frame = new JFrame();
 	public static int width = 0, height = 0;
@@ -28,7 +35,7 @@ public class Screen extends Canvas {
 	
 	//Sets up the Frame
 	public Screen(String title, int width, int height) {
-		this.width = width; this.height = height;
+		Screen.width = width; Screen.height = height;
 		rect = new Rectangle(0, 0, width, height);
 		setBounds(rect);
 		frame.setResizable(false);
@@ -52,11 +59,11 @@ public class Screen extends Canvas {
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, getWidth(), getHeight());
 		g.setColor(Color.GREEN);
-		g.drawString("ups: " + GameLoop.frames, 0, 10);
-		g.drawString("Height: " + GameState.heightReached / 60, 0, 20);
+		g.drawString("Height: " + (int)(GameState.heightReached / 60), 0, 20);
 		RunnableObject.drawObjects(g); //Renders objects we create.
+		g.drawString("ups: " + GameLoop.frames, 0, 10);
 		
 		g.dispose(); //Disposes of the graphics context to save memory space.
 		bs.show(); //displays the next frame in the buffer strategy.
-	}
+	} 
 }

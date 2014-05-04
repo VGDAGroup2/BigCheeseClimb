@@ -9,4 +9,16 @@ package com.game.code;
 public  class GameState {
 	public static double fallRate = .5;
 	public static double heightReached;
+	public static boolean jumped = false;
+	public static boolean floorTrigger = false;
+	public static final int MAX_HEIGHT = 1000;
+	public static double recordHeight = 0;
+	public static boolean gameRunning = false;
+	public static boolean playerFaceLeft = false;
+	
+	public static void resetGame() {
+		heightReached = 0;
+		jumped = false;
+		floorTrigger = false;
+	}
 }

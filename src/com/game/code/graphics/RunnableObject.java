@@ -19,6 +19,7 @@ import com.game.code.collision.CollisionDetection;
  */
 
 public abstract class RunnableObject extends Rectangle2D.Double {
+	private static final long serialVersionUID = 1L;
 	static List<RunnableObject> list = new ArrayList<RunnableObject>();
 	static Queue<RunnableObject> input = new LinkedList<RunnableObject>(); //This is here as a buffer to prevent concurrent modification exceptions. (Two threads working on the same object).
 	static Queue<RunnableObject> output = new LinkedList<RunnableObject>(); //This is here for a removal buffer
@@ -32,12 +33,25 @@ public abstract class RunnableObject extends Rectangle2D.Double {
 	
 	public abstract void update(); //Write object behaviors in this
 	public abstract void draw(Graphics g); //Write the how the object renders in this.
+	
+	protected void removeMe() { //This removes the object from any lists it may be in.
+		output.add(this);
+		if(this instanceof Collidable) {
+			CollisionDetection.collidables.remove(this);
+		}
+	}
 
 	public static void emptyQueue() {
 		while(output.peek() != null)
 			list.remove(output.remove());
 		while(input.peek() != null)
 			list.add(input.remove());
+	}
+	
+	public static void emptyAll() { //This will remove all objects from the list;
+		for(RunnableObject r: list) {
+			r.removeMe();
+		}
 	}
 	
 	public static void updateObjects() { //Updates all runnable objects
