@@ -1,3 +1,5 @@
-High quality rendering update.
+Started the Menu. Hopefully this will help you out Josh. We should have the art for it soon.
 
-Added a rendering method to the Assets class to take any BufferedImage and shrink it to the specified size with minimal quality loss.
+Added Mouse functionality to Control. Added the menu, it is somewhat functional.
+
+The menu is in the form of Menu Class and Custom Button.

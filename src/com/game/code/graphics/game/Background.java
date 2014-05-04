@@ -1,9 +1,11 @@
-package com.game.code.graphics;
+package com.game.code.graphics.game;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import com.game.code.GameState;
+import com.game.code.graphics.RunnableObject;
+import com.game.code.graphics.Screen;
 
 /*
  * This class runs our background image; 

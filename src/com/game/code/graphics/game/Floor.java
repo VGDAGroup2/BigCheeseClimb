@@ -1,4 +1,4 @@
-package com.game.code.graphics;
+package com.game.code.graphics.game;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -6,6 +6,8 @@ import java.awt.geom.Rectangle2D;
 
 import com.game.code.GameState;
 import com.game.code.collision.Collidable;
+import com.game.code.graphics.RunnableObject;
+import com.game.code.graphics.Screen;
 
 public class Floor extends RunnableObject implements Collidable{
 	private static final long serialVersionUID = 1L;

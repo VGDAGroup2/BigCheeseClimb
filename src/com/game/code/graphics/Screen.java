@@ -65,46 +65,5 @@ public class Screen extends Canvas{
 		
 		g.dispose(); //Disposes of the graphics context to save memory space.
 		bs.show(); //displays the next frame in the buffer strategy.
-	}
-	
-	public static void buildMenu(){
-		//builds all 3 buttons 
-		JButton startButton = new JButton("Start");
-		JButton instructButton = new JButton("Instructions");
-		JButton creditButton = new JButton("Credits");
-		//actionlistener for start
-		startButton.addActionListener(new ActionListener() {
- 
-            public void actionPerformed(ActionEvent start)
-            {
-            	GameRunner.runGame();
-            }
-        });      
-
-		frame.add(startButton);
-		//actionlistener for instructions
-		instructButton.addActionListener(new ActionListener() {
- 
-            public void actionPerformed(ActionEvent inst)
-            {
-                //Should build instructions graphics object
-                System.out.println("run instructions");
-            }
-        });      
-		
-		frame.add(instructButton); 
-		creditButton.addActionListener(new ActionListener() {
- 
-            public void actionPerformed(ActionEvent credit)
-            {
-                //should run credits
-                System.out.println("run credits");
-            }
-        });      
-		
-		frame.add(creditButton); 
-
-		
-		  
-	}
+	} 
 }

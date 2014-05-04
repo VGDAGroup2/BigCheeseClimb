@@ -4,8 +4,8 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Random;
 
-import com.game.code.graphics.FallingPlatform;
 import com.game.code.graphics.Screen;
+import com.game.code.graphics.game.FallingPlatform;
 
 public class PlatformControls {	
 	

@@ -1,4 +1,4 @@
-package com.game.code.graphics;
+package com.game.code.graphics.game;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -10,6 +10,8 @@ import com.game.code.GameRunner;
 import com.game.code.GameState;
 import com.game.code.PlatformControls;
 import com.game.code.collision.CollisionDetection;
+import com.game.code.graphics.RunnableObject;
+import com.game.code.graphics.Screen;
 
 /*
  * Pretty self explanatory, this is

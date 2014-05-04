@@ -13,6 +13,7 @@ public  class GameState {
 	public static boolean floorTrigger = false;
 	public static final int MAX_HEIGHT = 1000;
 	public static double recordHeight = 0;
+	public static boolean gameRunning = false;
 	
 	public static void resetGame() {
 		heightReached = 0;

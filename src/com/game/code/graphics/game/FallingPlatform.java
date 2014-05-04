@@ -1,4 +1,4 @@
-package com.game.code.graphics;
+package com.game.code.graphics.game;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -6,6 +6,8 @@ import java.awt.image.BufferedImage;
 import com.game.code.Assets;
 import com.game.code.GameState;
 import com.game.code.collision.Collidable;
+import com.game.code.graphics.RunnableObject;
+import com.game.code.graphics.Screen;
 
 public class FallingPlatform extends RunnableObject implements Collidable {
 	private static final long serialVersionUID = 1L;
