@@ -20,5 +20,6 @@ public  class GameState {
 		heightReached = 0;
 		jumped = false;
 		floorTrigger = false;
+		playerFaceLeft = false;
 	}
 }
