@@ -10,7 +10,7 @@ import com.game.code.graphics.game.FallingPlatform;
 public class PlatformControls {	
 	
 	static ArrayList<FallingPlatform> platforms = new ArrayList<FallingPlatform>();
-	private static int spawnRate = 60; //If a platform falls this far, it will spawn a new one. 
+	private static double spawnRate = 100; //If a platform falls this far, it will spawn a new one. 
 	private static double pWidth = 100; 
 	private static Random rand = new Random();
 	static BufferedImage using = Assets.PLATFORM_SPACE;
@@ -23,7 +23,11 @@ public class PlatformControls {
 		if(pWidth > 20) { // Modifies the size of the platform base on height
 			pWidth = (1 - (GameState.heightReached/GameState.MAX_HEIGHT)) * 100;
 		}
-		
+		//varies spawn rate of platforms, increases rate as height increases
+				if(spawnRate >20){
+					spawnRate = (1 - (GameState.heightReached/GameState.MAX_HEIGHT)) * 100;
+				}
+				
 		if(pWidth <= 86) { //86
 			using = Assets.PLATFORM_CLOUD;
 		}

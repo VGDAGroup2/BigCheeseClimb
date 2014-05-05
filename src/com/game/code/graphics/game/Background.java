@@ -28,7 +28,7 @@ public class Background extends RunnableObject {
 		y = sHeight * percent;
 		//this code ends the game
 		
-		if((percent * 100)<=97){//changing the 0 to other numbers changes distance to victory
+		if((percent * 100)<=0){//changing the 0 to other numbers changes distance to victory
 		//add code to run victory screen here
 			
 		//reset game
