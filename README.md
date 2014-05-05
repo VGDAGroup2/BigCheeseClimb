@@ -1,1 +1,1 @@
-Additions of new buttons graphics. They are animated when you roll over them!
+Added new code to end game upon reaching the max height. Game currently resets upon victory.

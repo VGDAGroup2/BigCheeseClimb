@@ -3,6 +3,7 @@ package com.game.code.graphics.game;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
+import com.game.code.GameRunner;
 import com.game.code.GameState;
 import com.game.code.graphics.RunnableObject;
 import com.game.code.graphics.Screen;
@@ -25,6 +26,15 @@ public class Background extends RunnableObject {
 	public void update() {
 		percent = (1 - (GameState.heightReached/GameState.MAX_HEIGHT));
 		y = sHeight * percent;
+		//this code ends the game
+		
+		if((percent * 100)<=97){//changing the 0 to other numbers changes distance to victory
+		//add code to run victory screen here
+			
+		//reset game
+		GameRunner.resetGame();
+		GameRunner.runMenu();
+		}
 	}
 	
 	public void draw(Graphics g) {
