@@ -26,9 +26,9 @@ public class Menu extends RunnableObject {
 	}
 	
 	private void setupGUI() {
-		int w = 150, h = 75;
+		int w = 175, h = 75;
 		int bX = Screen.width/2 - w/2;
-		int sHeight = 125, hMod = 150;
+		int sHeight = 175, hMod = 140;
 		start = new CustomButton(bX , sHeight + hMod * 0, w, h, Assets.BUTTON_START);
 		instructions = new CustomButton(bX, sHeight + hMod * 1, w, h, Assets.BUTTON_CONTROLS);
 		credits = new CustomButton(bX, sHeight + hMod * 2, w, h, Assets.BUTTON_CREDITS);

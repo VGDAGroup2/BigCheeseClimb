@@ -37,7 +37,6 @@ public class GameRunner {
 	//Self explanatory, this runs the menu
 	public static void runMenu() {
 		new Menu();
-		System.out.println("The Menu is running");
 	}
 	
 	public static void runGame() {
