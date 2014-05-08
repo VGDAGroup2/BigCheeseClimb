@@ -9,6 +9,7 @@ import com.game.code.graphics.menu.Menu;
 
 public class GameRunner {
 	static GameLoop loop;
+	static PlatformControls platforms;
 	
 	//The init method will setup the game. I.E. getting a frame and controls running
 	public static void init() {
@@ -25,7 +26,6 @@ public class GameRunner {
 	}
 	
 	public static void resetGame() { //This method resets the game
-		GameState.gameRunning = false;
 		loop.stopDrawing();
 		RunnableObject.emptyAll();
 		GameState.recordHeight = GameState.heightReached; // Record the record height!
@@ -44,7 +44,10 @@ public class GameRunner {
 		new Background(Assets.BACKGROUND);
 		new Floor();
 		new MainCharacter(Assets.MOUSE);
-		new PlatformControls();
+		if(platforms == null)
+			platforms = new PlatformControls();
+		else
+			platforms.reset();
 	}
 
 	public static void exitMenu() { // This will destroy the Menu

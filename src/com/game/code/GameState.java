@@ -21,5 +21,6 @@ public  class GameState {
 		jumped = false;
 		floorTrigger = false;
 		playerFaceLeft = false;
+		gameRunning = false;
 	}
 }

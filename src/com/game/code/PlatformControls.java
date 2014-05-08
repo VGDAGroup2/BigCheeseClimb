@@ -40,6 +40,13 @@ public class PlatformControls {
 		}
 	}
 	
+	public static void reset() {
+		platforms.removeAll(platforms);
+		using = Assets.PLATFORM_SPACE;
+		spawnRate = 100;
+		pWidth = 100;
+	}
+	
 	public static void removePlatform(FallingPlatform fp) {
 		if(platforms.contains(fp)) {
 			platforms.remove(fp);

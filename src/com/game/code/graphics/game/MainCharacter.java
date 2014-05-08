@@ -101,17 +101,15 @@ public class MainCharacter extends RunnableObject{
 			x = Screen.width - x;
 		
 		//Changes direction player is facing.
-		if(Control.left){
+		if(Control.left) {
 			if(!GameState.playerFaceLeft)
 				image = Assets.flipImage(image);
 			GameState.playerFaceLeft = true;
-		}
-		else if(Control.right){
+		} else if(Control.right) {
 			if(GameState.playerFaceLeft)
 				image = Assets.flipImage(image);
 			GameState.playerFaceLeft = false;
-		}
-			
+		}	
 	}
 
 	public void draw(Graphics g) {
