@@ -1,15 +1,17 @@
-package com.game.code.graphics.game;
+package com.game.code.objects.game;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import com.game.code.Assets;
 import com.game.code.GameState;
-import com.game.code.collision.Collidable;
-import com.game.code.graphics.RunnableObject;
-import com.game.code.graphics.Screen;
+import com.game.code.objects.GameObject;
+import com.game.code.objects.Screen;
+import com.game.code.objects.interfaces.Collidable;
+import com.game.code.objects.interfaces.Drawable;
+import com.game.code.objects.interfaces.Updatable;
 
-public class FallingPlatform extends RunnableObject implements Collidable {
+public class FallingPlatform extends GameObject implements Collidable, Drawable, Updatable {
 	private static final long serialVersionUID = 1L;
 	private BufferedImage image;
 	private int platformScale = 40;
@@ -22,12 +24,11 @@ public class FallingPlatform extends RunnableObject implements Collidable {
 	public void update() {
 		y += GameState.fallRate;
 		if(y >= Screen.height) {
-			removeMe();
+			output.add(this);
 		}
 	}
 	
 	public void draw(Graphics g) {
-	    //g.drawImage(image, (int)x, (int)y, (int)(x + width), (int)(y + height * 20), (int)0, (int)0, (int)(image.getWidth()), (int)(image.getHeight()), null);
 		g.drawImage(image, (int)x, (int)y, null);
 	}
 	

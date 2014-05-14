@@ -1,4 +1,4 @@
-package com.game.code.graphics.game;
+package com.game.code.objects.game;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -8,16 +8,18 @@ import com.game.code.Control;
 import com.game.code.GameRunner;
 import com.game.code.GameState;
 import com.game.code.PlatformControls;
-import com.game.code.collision.CollisionDetection;
-import com.game.code.graphics.RunnableObject;
-import com.game.code.graphics.Screen;
+import com.game.code.objects.CollisionDetection;
+import com.game.code.objects.GameObject;
+import com.game.code.objects.Screen;
+import com.game.code.objects.interfaces.Drawable;
+import com.game.code.objects.interfaces.Updatable;
 
 /*
  * Pretty self explanatory, this is
  * our main character!
  */
 
-public class MainCharacter extends RunnableObject{
+public class MainCharacter extends GameObject implements Updatable, Drawable {
 	private static final long serialVersionUID = 1L;
 	private int IV = 7;		//Edit this variable to change the instantaneous velocity of the player's jump.
 	private boolean isFalling = false;		

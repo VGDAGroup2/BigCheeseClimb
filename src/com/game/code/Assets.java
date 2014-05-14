@@ -10,7 +10,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import com.game.code.graphics.RunnableObject;
+import com.game.code.objects.GameObject;
 
 /*
  * This is where we load all the assets.
@@ -41,7 +41,7 @@ public class Assets {
 	
 	private static BufferedImage loadImage(String path) {
 		try {
-			return ImageIO.read(RunnableObject.class.getResource(path));
+			return ImageIO.read(GameObject.class.getResource(path));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

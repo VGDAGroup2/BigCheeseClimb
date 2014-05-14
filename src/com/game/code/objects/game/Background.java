@@ -1,18 +1,20 @@
-package com.game.code.graphics.game;
+package com.game.code.objects.game;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import com.game.code.GameRunner;
 import com.game.code.GameState;
-import com.game.code.graphics.RunnableObject;
-import com.game.code.graphics.Screen;
+import com.game.code.objects.GameObject;
+import com.game.code.objects.Screen;
+import com.game.code.objects.interfaces.Drawable;
+import com.game.code.objects.interfaces.Updatable;
 
 /*
  * This class runs our background image; 
  */
 
-public class Background extends RunnableObject {
+public class Background extends GameObject implements Updatable, Drawable {
 	private static final long serialVersionUID = 1L;
 	BufferedImage image;
 	double percent = 0;
@@ -28,12 +30,12 @@ public class Background extends RunnableObject {
 		y = sHeight * percent;
 		//this code ends the game
 		
-		if((percent * 100)<=0){//changing the 0 to other numbers changes distance to victory
-		//add code to run victory screen here
+		if((percent * 100) <= 0) {	//changing the 0 to other numbers changes distance to victory
+			//add code to run victory screen here
 			
-		//reset game
-		GameRunner.resetGame();
-		GameRunner.runMenu();
+			//reset game
+			GameRunner.resetGame();
+			GameRunner.runMenu();
 		}
 	}
 	

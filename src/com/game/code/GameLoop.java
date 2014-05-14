@@ -1,7 +1,10 @@
 package com.game.code;
 
-import com.game.code.graphics.RunnableObject;
-import com.game.code.graphics.Screen;
+import java.util.ArrayList;
+
+import com.game.code.objects.GameObject;
+import com.game.code.objects.Screen;
+import com.game.code.objects.interfaces.Updatable;
 
 public class GameLoop implements Runnable {
 	private boolean running = false;
@@ -49,12 +52,14 @@ public class GameLoop implements Runnable {
 			now = System.nanoTime();
 			delta += (now - lastTime)/fps;
 			lastTime = now;
-			RunnableObject.emptyQueue();
+			GameObject.emptyQueue();
 			while(delta >= 1) {
 				if(GameState.gameRunning)
 					PlatformControls.newPlatform();
 				control.update(); //To update the controls
-				RunnableObject.updateObjects(); //To update the objects
+				if(GameObject.getList(Updatable.class) != null)
+					for(Updatable o : (ArrayList<Updatable>) GameObject.getList(Updatable.class))
+						o.update();
 				delta --;
 			}
 			updates ++;

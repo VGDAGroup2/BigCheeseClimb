@@ -1,11 +1,11 @@
 package com.game.code;
 
-import com.game.code.graphics.RunnableObject;
-import com.game.code.graphics.Screen;
-import com.game.code.graphics.game.Background;
-import com.game.code.graphics.game.Floor;
-import com.game.code.graphics.game.MainCharacter;
-import com.game.code.graphics.menu.Menu;
+import com.game.code.objects.GameObject;
+import com.game.code.objects.Screen;
+import com.game.code.objects.game.Background;
+import com.game.code.objects.game.Floor;
+import com.game.code.objects.game.MainCharacter;
+import com.game.code.objects.menu.Menu;
 
 public class GameRunner {
 	static GameLoop loop;
@@ -27,7 +27,7 @@ public class GameRunner {
 	
 	public static void resetGame() { //This method resets the game
 		loop.stopDrawing();
-		RunnableObject.emptyAll();
+		GameObject.emptyAll();
 		GameState.recordHeight = GameState.heightReached; // Record the record height!
 		GameState.resetGame();
 		System.gc(); //Every time the game is complete we dump the trash created.
@@ -52,7 +52,7 @@ public class GameRunner {
 
 	public static void exitMenu() { // This will destroy the Menu
 		loop.stopDrawing();
-		RunnableObject.emptyAll();
+		GameObject.emptyAll();
 		System.gc();
 		loop.startDrawing();
 		runGame();

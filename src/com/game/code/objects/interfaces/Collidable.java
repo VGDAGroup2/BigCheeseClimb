@@ -1,4 +1,4 @@
-package com.game.code.collision;
+package com.game.code.objects.interfaces;
 
 import java.awt.geom.Rectangle2D;
 

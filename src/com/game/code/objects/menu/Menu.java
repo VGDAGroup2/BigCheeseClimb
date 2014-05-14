@@ -1,4 +1,4 @@
-package com.game.code.graphics.menu;
+package com.game.code.objects.menu;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -7,10 +7,10 @@ import javax.swing.JPanel;
 
 import com.game.code.Assets;
 import com.game.code.GameRunner;
-import com.game.code.graphics.RunnableObject;
-import com.game.code.graphics.Screen;
+import com.game.code.objects.GameObject;
+import com.game.code.objects.Screen;
 
-public class Menu extends RunnableObject {
+public class Menu extends GameObject {
 	private static final long serialVersionUID = 1L;
 	
 	BufferedImage image;

@@ -1,20 +1,18 @@
-package com.game.code.graphics;
+package com.game.code.objects;
 
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferStrategy;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
-import javax.swing.JButton;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import com.game.code.GameLoop;
-import com.game.code.GameRunner;
 import com.game.code.GameState;
+import com.game.code.objects.interfaces.Drawable;
+import com.game.code.objects.interfaces.Updatable;
 
 
 /* This is the screen. It is what we render to.
@@ -60,7 +58,12 @@ public class Screen extends Canvas{
 		g.fillRect(0, 0, getWidth(), getHeight());
 		g.setColor(Color.GREEN);
 		g.drawString("Height: " + (int)(GameState.heightReached / 60), 0, 20);
-		RunnableObject.drawObjects(g); //Renders objects we create.
+		
+		if(GameObject.getList(Drawable.class) != null)
+		for(Drawable o : (ArrayList<Drawable>) GameObject.getList(Drawable.class)) {
+			o.draw(g);
+		}
+		
 		g.drawString("ups: " + GameLoop.frames, 0, 10);
 		
 		g.dispose(); //Disposes of the graphics context to save memory space.

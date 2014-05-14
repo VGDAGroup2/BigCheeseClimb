@@ -1,15 +1,17 @@
-package com.game.code.graphics.game;
+package com.game.code.objects.game;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.geom.Rectangle2D;
 
 import com.game.code.GameState;
-import com.game.code.collision.Collidable;
-import com.game.code.graphics.RunnableObject;
-import com.game.code.graphics.Screen;
+import com.game.code.objects.GameObject;
+import com.game.code.objects.Screen;
+import com.game.code.objects.interfaces.Collidable;
+import com.game.code.objects.interfaces.Drawable;
+import com.game.code.objects.interfaces.Updatable;
 
-public class Floor extends RunnableObject implements Collidable{
+public class Floor extends GameObject implements Collidable, Updatable, Drawable{
 	private static final long serialVersionUID = 1L;
 	private int fHeight = 10;
 	
@@ -24,7 +26,7 @@ public class Floor extends RunnableObject implements Collidable{
 
 	public void update() {
 		if(GameState.floorTrigger)
-			removeMe();
+			output.add(this);
 	}
 
 	public void draw(Graphics g) {

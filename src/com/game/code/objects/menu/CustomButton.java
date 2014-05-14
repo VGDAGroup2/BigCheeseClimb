@@ -1,13 +1,15 @@
-package com.game.code.graphics.menu;
+package com.game.code.objects.menu;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import com.game.code.Assets;
 import com.game.code.Control;
-import com.game.code.graphics.RunnableObject;
+import com.game.code.objects.GameObject;
+import com.game.code.objects.interfaces.Drawable;
+import com.game.code.objects.interfaces.Updatable;
 
-public class CustomButton extends RunnableObject {
+public class CustomButton extends GameObject implements Updatable, Drawable{
 	private static final long serialVersionUID = 1L;
 	
 	BufferedImage original, hovered;
@@ -36,5 +38,9 @@ public class CustomButton extends RunnableObject {
 		} else {
 			g.drawImage(original, (int)x, (int)y, (int)width, (int)height, null);
 		}
+	}
+
+	public int getZ() {
+		return 0;
 	}
 }
