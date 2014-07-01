@@ -35,8 +35,6 @@ public abstract class GameObject extends Rectangle2D.Double {
 	protected void addMe() { //This removes the object from any lists it may be in.
 		ArrayList<GameObject> list;
 		for(Class c : classes) {
-			 
-			
 			if(objects.get(c) != null)
 				list = objects.get(c);
 			else

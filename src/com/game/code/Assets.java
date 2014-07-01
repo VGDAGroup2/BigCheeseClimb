@@ -6,9 +6,14 @@ import java.awt.Transparency;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
+import java.io.BufferedInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 import javax.imageio.ImageIO;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 import com.game.code.objects.GameObject;
 
@@ -27,6 +32,7 @@ public class Assets {
 	public static BufferedImage BUTTON_START;
 	public static BufferedImage BUTTON_CONTROLS;
 	public static BufferedImage BUTTON_CREDITS;
+	public static AudioInputStream JUMP;
 	
 	public void load() {
 		PLATFORM_LEAF = loadImage("/leafPlatform.png");
@@ -37,6 +43,13 @@ public class Assets {
 		BUTTON_START = loadImage("/startButton.png");
 		BUTTON_CONTROLS = loadImage("/controlsButton.png");
 		BUTTON_CREDITS = loadImage("/creditsButton.png");
+		try {
+			JUMP = loadMusic("/jumpSound.wav");
+		} catch (UnsupportedAudioFileException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private static BufferedImage loadImage(String path) {
@@ -46,6 +59,12 @@ public class Assets {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	private static AudioInputStream loadMusic(String path) throws UnsupportedAudioFileException, IOException {
+		InputStream url = GameObject.class.getResourceAsStream(path);
+		BufferedInputStream stream = new BufferedInputStream(url);
+		return AudioSystem.getAudioInputStream(stream);
 	}
 	
 	public static BufferedImage getScaledInstance(BufferedImage img, int targetWidth, int targetHeight, boolean higherQuality) {

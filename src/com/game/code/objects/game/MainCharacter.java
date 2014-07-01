@@ -7,6 +7,7 @@ import com.game.code.Assets;
 import com.game.code.Control;
 import com.game.code.GameRunner;
 import com.game.code.GameState;
+import com.game.code.MusicPlayer;
 import com.game.code.PlatformControls;
 import com.game.code.objects.CollisionDetection;
 import com.game.code.objects.GameObject;
@@ -55,7 +56,7 @@ public class MainCharacter extends GameObject implements Updatable, Drawable {
 		//Player Control -- Jump
 		velocity = acceleration * jumpTime + instantV;		//Calculates the velocity during the jump.
 		if(!isFalling) {	
-			if(Control.jump && !isJumping) {             
+			if(Control.jump && !isJumping) {
 				isJumping = true;
 				curTime = 0;
 			}
@@ -94,6 +95,10 @@ public class MainCharacter extends GameObject implements Updatable, Drawable {
 		if(y > Screen.height) { //DEATH!!!
 			GameRunner.resetGame();
 			GameRunner.runMenu();
+		}
+		
+		if(Control.jump) {
+			MusicPlayer.playJumpSound();
 		}
 
 		//Player Control -- Move Left and Right
